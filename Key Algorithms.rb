@@ -82,3 +82,20 @@ def two_sum(nums, target)
   end
 end
 
+#Maximum Subarray（如果下一个数自己，比前面的累积（无论单个还是多个）加上下一个数
+#还要大，那么就可以完全舍弃掉前面的累积）
+def max_sub_array(nums)
+  len = nums.length
+  output = nums[0]
+  current = nums[0]
+  (1...len).each do |i|
+      if nums[i] < current + nums[i]
+         current += nums[i] 
+      else
+          current = nums[i]
+      end
+      output = current if current > output
+  end
+  
+  output
+end
